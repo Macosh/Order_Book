@@ -36,6 +36,7 @@ class PriceHistoryDB(object):
     def get_total_volume(self):
         return self.price_history_db['Size'].sum()
     
+    
 if __name__ == '__main__':
     db = PriceHistoryDB()
     data = [100, '12:15:01', [25, 54], 2000]
@@ -44,5 +45,5 @@ if __name__ == '__main__':
     db.insert_trade(data)
     data = [110, '13:27:00', [11, 10], 5000]
     db.insert_trade(data)
-            
+    print(db.get_price_history())            
     

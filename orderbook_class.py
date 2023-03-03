@@ -7,7 +7,6 @@ Created on Thu Apr 23 15:44:59 2020
 
 import pandas as pd
 import numpy as np
-import order_class
 import time
 pd.options.display.max_columns = None
 from tabulate import tabulate
@@ -74,7 +73,7 @@ class OrderBook(object):
             return self.to_dataframe(bid_side = bid_side)['Size'].sum(axis = 0)
         
         
-    def display_book(self, display_size = 10):
+    def display(self, display_size = 5):
         """
         Displays the current state of the entire order book, i.e. ask side and
         bid side. Needs to be adjusted to show only aggregated orders at a given price.
@@ -109,11 +108,13 @@ class OrderBook(object):
         entire_book = pd.concat([book_ask_side.iloc[-display_size:], sep_frame, 
                                  book_bid_side.iloc[:display_size]]).rename_axis(index = 'Order ID')
         print('\n')
+        # print(entire_book)
         print(tabulate(entire_book[display_columns], headers = display_columns,
                         tablefmt = 'fancy_grid', stralign = 'center'))
     
      
 if __name__ == '__main__':
+    import order_class
     T = 10**(-6)    
     m1 = order_class.MarketOrder(direction = 'Sell', size = 3000, security = "AMZN")    
     lb1 = order_class.LimitOrder(direction = 'Buy', size = 500, price_limit = 1600, security = "AMZN")
@@ -138,4 +139,4 @@ if __name__ == '__main__':
     book = OrderBook()
     for i in [lb1, lb2, lb3, lb4, ls1, ls2, ls3, ls4]:
         book.insert_order(i)
-    book.display_book()
+    book.display()
