@@ -77,7 +77,6 @@ class MarketOrder(Order):
                          index=MarketOrder.attributes,
                          name=self.get_order_id())
 
-
 class LimitOrder(Order):
     attributes = ['Order ID', 'Order_type', 'Security', 'Direction', 'Size',
                   'Price_limit', 'Status', 'Arrival_time', 'Is_iceberg_peak']
@@ -119,19 +118,28 @@ class LimitOrder(Order):
 
 class IcebergOrder(Order):
 
-    def __init__(self, direction: str, size: int, price_limit: float, security: str, peak_size: int):
-        super().__init__(direction, size, price_limit, security)
-        self.peak_size = peak_size
+    def __init__(self, direction: str, iceberg_order_size: int, price_limit: float, security: str, peak_size: int):
+        super().__init__(direction=direction, size=iceberg_order_size, security="AMZN")
         self.order_type = "Iceberg"
+        self.peak_size = peak_size
         self.peak_order = LimitOrder(direction=direction, size=peak_size,
                                      price_limit=price_limit, security=security,
                                      is_iceberg_peak=True)
+
+    def get_peak_size(self):
+        return self.peak_size
+
+    def get_peak_order(self):
+        return self.peak_order
 
     def update_peak_order_arrival_time(self):
         self.peak_order.arrival_time = dt.datetime.now()
 
     def update_peak_order_size(self, updated_size: int):
         self.peak_order.update_size(updated_size=updated_size)
+
+    def update_iceberg_order_size(self, updated_size: int):
+        self.update_size(updated_size=updated_size)
 
 
 
@@ -141,3 +149,4 @@ if __name__ == '__main__':
     l1 = LimitOrder(direction='Buy', size=500, price_limit=1600, security="AMZN")
     l2 = LimitOrder(direction='Buy', size=100, price_limit=1700, security="AMZN")
     l3 = LimitOrder(direction='Buy', size=3000, price_limit=1750, security="AMZN")
+    ib1 = IcebergOrder(direction='Buy', iceberg_order_size= 1000, security='AMZN', peak_size=100, price_limit=1500)
