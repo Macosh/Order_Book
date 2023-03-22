@@ -1,5 +1,6 @@
 #Implement new order class
 
 class OrderBook():
-
-    pass
+    #
+    def __init__(self):
+        pass
