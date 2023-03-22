@@ -4,6 +4,7 @@ Created on Tue May  5 20:29:45 2020
 
 @author: Maciej Legosz
 """
+# to be eventually replaced by MongoDB
 
 import pandas as pd
 import numpy as np
