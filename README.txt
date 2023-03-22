@@ -8,6 +8,8 @@ orderbook_class.py - specifes attributes and methods of a 'price-time priority' 
 matching_engine_class.py - specifies attributes and methods of a matching engine for order types specified in order_class.py
 order_generator.py - aims to simulate a random flow of orders into an order book, with the goal of reflecting order dynamics throughout different market regimes
 price_history_db.py - is a database of history or executed orders with all relevant order details - ultimately to be replaced by an SQL DB
+orderbook.py - new class for an orderbook at will replace eventually the current one: orderbook_class.py
+iceberg_management.py - a class that manages the Iceberg orders
 
 More classes controlling flow of data between existing classes is going to be build.
 
