@@ -3,6 +3,7 @@
 Created on Tue May  5 19:45:30 2020
 @author: Maciej Legosz
 """
+
 import warnings
 warnings.filterwarnings('ignore')
 import random
@@ -105,7 +106,6 @@ if __name__ == '__main__':
     m2 = oc.MarketOrder("Sell", 1000, "AMZN")
     me.match_sell_market_order(m2)
     book.display(display_size = 5)
-
 
     lb1 = oc.LimitOrder(direction = 'Sell', size = 1000, price_limit = 2200.47, security = "AMZN")
     print(lb1.get_order_id())
