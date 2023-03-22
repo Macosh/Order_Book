@@ -120,8 +120,3 @@ if __name__ == '__main__':
 
     me.match_sell_limit_order(lb2)
     book.display(display_size=5)
-
-        
-        
-    
-        
