@@ -4,6 +4,7 @@ Created on Tue Apr 28 18:13:33 2020
 
 @author: Maciej Legosz
 """
+
 import pandas as pd
 import order_class
 import orderbook_class
