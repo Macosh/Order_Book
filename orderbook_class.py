@@ -5,6 +5,8 @@ Created on Thu Apr 23 15:44:59 2020
 @author: Maciej Legosz
 """
 
+
+
 import pandas as pd
 import numpy as np
 import time
